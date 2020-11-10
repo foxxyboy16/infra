@@ -1,1 +1,1 @@
-# infra
+This is an infrastructure repository
