@@ -7,7 +7,12 @@
 "source_image": "ubuntu-1604-xenial-v20201111",
 "zone": "europe-west1-b",
 "ssh_username": "appuser",
-"machine_type": "f1-micro"
+"machine_type": "f1-micro",
+"image_description": "reddit_app, mongodb, ruby, deploy",
+"disk_type": "pd-standard",
+"disk_size": "20",
+"network": "default",
+"tags": "puma-server"
 }
 
 ],
@@ -15,7 +20,8 @@
 "provisioners":[
 {
   "type": "shell",
-  "script": "scripts/install_ruby.sh"
+  "script": "scripts/install_ruby.sh",
+  "execute_command": "sudo {{.Path}}"
 },
 {
 "type": "shell",
