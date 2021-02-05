@@ -1,0 +1,55 @@
+{
+"builders":[
+{
+  "type": "googlecompute",
+  "project_id": "week-3-303816",
+  "image_name": "reddit-base-{{timestamp}}",
+  "source_image": "ubuntu-1604-xenial-v20210203",
+  "zone": "europe-west1-b",
+  "ssh_username": "appuser",
+  "machine_type": "f1-micro",
+  "image_description": "This is image with all dependencies",
+  "disk_size": "20",
+  "disk_type": "pd-standard",
+  "network": "default",
+  "tags": "puma-server"
+}
+],
+"provisioners": [
+{
+
+"type": "file",
+"source": "files/puma.service",
+"destination": "/tmp/puma.service"
+
+
+},
+{
+"type": "shell",
+"script": "scripts/install_ruby.sh",
+"execute_command": "sudo {{.Path}}"
+},
+{
+"type": "shell",
+"script": "scripts/install_mongodb.sh",
+"execute_command": "sudo {{.Path}}"
+},
+
+{
+"type": "shell",
+"script": "files/deploy.sh",
+"execute_command": "sudo {{.Path}}"
+},
+
+{
+"type": "shell",
+"inline": [
+"sudo mv /tmp/puma.service /etc/systemd/system/puma.service",
+"sudo systemctl enable puma",
+"sudo systemctl start puma",
+"sudo systemctl status puma"
+]
+
+}
+]
+}
