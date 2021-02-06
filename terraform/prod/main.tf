@@ -20,10 +20,3 @@ module "vpc" {
     source_ranges = ["93.77.77.166/32"]
 }
 
-
-terraform {
-  backend "gcs" {
-    bucket  = "gcp_tfstate_bucket"
-    prefix  = "terraform/prod"
-  }
-}

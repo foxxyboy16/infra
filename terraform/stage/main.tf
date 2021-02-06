@@ -19,6 +19,7 @@ module "vpc" {
     source = "../modules/vpc"
     source_ranges = ["0.0.0.0/0"]
 }
+<<<<<<< HEAD
 
 terraform {
   backend "gcs" {
@@ -26,3 +27,5 @@ terraform {
     prefix  = "terraform/stage"
   }
 }
+=======
+>>>>>>> ansible-2
