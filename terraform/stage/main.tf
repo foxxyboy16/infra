@@ -24,5 +24,5 @@ terraform {
   backend "gcs" {
     bucket  = "gcp_tfstate_bucket"
     prefix  = "terraform/stage"
-  }
-}
+ }
+} 
