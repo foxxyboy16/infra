@@ -19,12 +19,10 @@ module "vpc" {
     source = "../modules/vpc"
     source_ranges = ["0.0.0.0/0"]
 }
-
-
+                     
 terraform {
   backend "gcs" {
     bucket  = "gcp_tfstate_bucket"
     prefix  = "terraform/stage"
   }
 }
-                     
