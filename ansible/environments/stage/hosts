@@ -3,4 +3,3 @@ appserver ansible_ssh_host=35.187.64.95
 
 [db]
 dbserver ansible_ssh_host=35.241.167.162
-

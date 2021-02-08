@@ -14,6 +14,11 @@
       tags: db-tag 
       notify: restart mongod
       
+  handlers:
+    - name: restart mongod
+      become: true
+      service: name=mongod state=restarted
+      
       
     - name: Add unit file for Puma
       become: true
@@ -22,6 +27,11 @@
         dest: /etc/systemd/system/puma.service
       tags: app-tag
       notify: reload puma
+      
+  handlers:
+    - name: reload puma
+      become: true
+      systemd: name=puma state=reloaded
       
     - name: Add config for DB connection
       template:
@@ -52,18 +62,10 @@
     
     
   handlers:
-  - name: restart mongod
-    become: true
-    service: name=mongod state=restarted
-    
-    
-  - name: reload puma
-    become: true
-    systemd: name=puma state=reloaded
-    
   - name: restart puma
     become: true
     systemd: name=puma state=restarted
+    
     
     
     
